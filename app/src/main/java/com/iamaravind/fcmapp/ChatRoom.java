@@ -54,6 +54,7 @@ public class ChatRoom extends AppCompatActivity {
                 i++;
                 Firebase myNewChild = chatFire.child(key);
                 myNewChild.setValue(msgval);
+                msg.setText("");
             }
         });
         Bundle bundle = getIntent().getExtras();
