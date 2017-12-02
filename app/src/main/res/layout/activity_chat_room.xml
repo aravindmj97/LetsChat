@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/message"
-        android:text="Send" />
+        android:background="@mipmap/ic_send" />
 
     <ListView
         android:id="@+id/chatspace"

@@ -14,6 +14,7 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class ChatRoom extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String mydate = sdf.format(Calendar.getInstance().getTime());
                 msgval = name+" : "+msg.getText().toString();
                 ii =Integer.toString(i);
@@ -70,12 +71,17 @@ public class ChatRoom extends AppCompatActivity {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
+                finish();
+                startActivity(getIntent());
+                //chatadpt.notifyDataSetChanged();
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
+                String childValues = dataSnapshot.getValue(String.class);
+                chats.remove(childValues);
+                chatadpt.notifyDataSetChanged();
             }
 
             @Override
